@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class Home extends StatelessWidget {
   List<Color> colors = [Colors.pinkAccent, Colors.orange];
@@ -62,7 +63,7 @@ class Home extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: UserAccountsDrawerHeader(
-//            currentAccountPicture: ,
+            currentAccountPicture: CircleAvatar(backgroundImage: AssetImage("assets/img/pp.png"),),
               accountName: Text("Omar Hatem"),
               accountEmail: Text("omarh.ismail1@gmail.com")),
           flex: 2,
@@ -71,8 +72,9 @@ class Home extends StatelessWidget {
           flex: 5,
           child: ListView.builder(
             shrinkWrap: true,
-            itemCount: drawerTiles.length,
+            itemCount: drawerTiles.length * 2,
             itemBuilder: (context, i) {
+              if ( i.isOdd ) return Divider();
               return drawerTiles[i];
             },
           ),
