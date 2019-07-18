@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
       title: 'UI Challenges',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        fontFamily: 'Great_Vibes',
       ),
       home: Home(),
     );
