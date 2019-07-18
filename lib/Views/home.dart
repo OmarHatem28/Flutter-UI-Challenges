@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Home extends StatelessWidget {
   List<Color> colors = [Colors.pinkAccent, Colors.orange];
@@ -46,10 +47,8 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              height: 150,
-            ),
-            buildBottomRow(context),
+            buildInfoColumn(),
+            buildBottomRow(),
           ],
         ),
       ),
@@ -134,9 +133,49 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget buildBottomRow(BuildContext context) {
+  Widget buildInfoColumn() {
     return Container(
-      margin: EdgeInsets.only(left: 20, right: 20, bottom: 30),
+      margin: EdgeInsets.only(top: 10),
+      child: Column(
+        children: <Widget>[
+          Text("Jennifer Aniston - 28", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+          Container(height: 8,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.location_on, color: Colors.blueGrey,),
+              Text("San Diego, California, USA", style: TextStyle(color: Colors.blueGrey.shade600),),
+            ],
+          ),
+          Container(height: 8,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              IconButton(
+                color: Colors.blueGrey,
+                icon: Icon(FontAwesomeIcons.instagram),
+                onPressed: (){},
+              ),
+              IconButton(
+                color: Colors.blueGrey,
+                icon: Icon(FontAwesomeIcons.facebookF),
+                onPressed: (){},
+              ),
+              IconButton(
+                color: Colors.blueGrey,
+                icon: Icon(FontAwesomeIcons.twitter),
+                onPressed: (){},
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildBottomRow() {
+    return Container(
+      margin: EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 30),
       height: 90,
       child: Stack(
         children: <Widget>[
@@ -186,7 +225,7 @@ class Home extends StatelessWidget {
           ),
           Positioned(
             bottom: 35,
-            left: MediaQuery.of(context).size.width / 2.7,
+            left: size.width / 2.7,
             child: FloatingActionButton(
               backgroundColor: Colors.white,
               onPressed: () {},
