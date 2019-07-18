@@ -19,18 +19,30 @@ class Home extends StatelessWidget {
                   colors: colors,
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  stops: [0.1, 1],
+                  stops: [0.2, 1],
                 )),
           ),
           Positioned(
-            child: Container(
-              height: 250,
-              width: 150,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage("assets/img/girl6.jpg"))),
+            child: ClipRRect(
+              borderRadius: new BorderRadius.circular(30),
+              child: Center(
+                child: Text(
+                  "Find My Soulmate",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            left: 30,
+            right: 30,
+            top: MediaQuery.of(context).size.height / 6,
+          ),
+          Positioned(
+            child: ClipRRect(
+              borderRadius: new BorderRadius.circular(30),
+              child: Image.asset("assets/img/girl3.jpg"),
             ),
             left: 30,
             right: 30,
