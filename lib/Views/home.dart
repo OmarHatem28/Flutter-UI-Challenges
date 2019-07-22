@@ -2,22 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Home extends StatelessWidget {
-  List<Color> colors = [Colors.pinkAccent, Colors.orange];
-  List<Color> colors2 = [Color(0xffff7ae9), Color(0xfff2855c)];
-
-  List<Widget> drawerTiles = [
-    ListTile(
-      title: Text(
-        "Find My Soul Mate",
-        style: TextStyle(
-          fontFamily: 'Great_Vibes',
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-        ),
-      ),
-    ),
+  final List<Color> colors = [Colors.pinkAccent, Colors.orange];
+  final List<Color> colors2 = [Color(0xffff7ae9), Color(0xfff2855c)];
+  final drawerTiles = [
+    {
+      'text': 'Find My Soul Mate',
+      'font': 'Great_Vibes',
+      'path': '',
+    },
+    {
+      'text': 'Login',
+      'font': '',
+      'path': '/login',
+    },
   ];
-
   Size size;
 
   @override
@@ -52,17 +50,19 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
-      drawer: buildDrawer(),
+      drawer: buildDrawer(context),
     );
   }
 
-  Widget buildDrawer() {
+  Widget buildDrawer(BuildContext context) {
     return Drawer(
         child: Column(
       children: <Widget>[
         Expanded(
           child: UserAccountsDrawerHeader(
-            currentAccountPicture: CircleAvatar(backgroundImage: AssetImage("assets/img/pp.png"),),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage("assets/img/pp.png"),
+              ),
               accountName: Text("Omar Hatem"),
               accountEmail: Text("omarh.ismail1@gmail.com")),
           flex: 2,
@@ -73,8 +73,22 @@ class Home extends StatelessWidget {
             shrinkWrap: true,
             itemCount: drawerTiles.length * 2,
             itemBuilder: (context, i) {
-              if ( i.isOdd ) return Divider();
-              return drawerTiles[i];
+              if (i.isOdd) return Divider();
+              return ListTile(
+                title: Text(
+                  drawerTiles[i ~/ 2]['text'],
+                  style: TextStyle(
+                    fontFamily: drawerTiles[i ~/ 2]['font'].isEmpty
+                        ? null
+                        : drawerTiles[i ~/ 2]['font'],
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                onTap: () => drawerTiles[i ~/ 2]['path'].isEmpty
+                    ? Navigator.pop(context)
+                    : Navigator.pushNamed(context, drawerTiles[i ~/ 2]['path']),
+              );
             },
           ),
         ),
@@ -139,33 +153,46 @@ class Home extends StatelessWidget {
       margin: EdgeInsets.only(top: 10),
       child: Column(
         children: <Widget>[
-          Text("Jennifer Aniston - 28", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
-          Container(height: 8,),
+          Text(
+            "Jennifer Aniston - 28",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          Container(
+            height: 8,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Icon(Icons.location_on, color: Colors.blueGrey,),
-              Text("San Diego, California, USA", style: TextStyle(color: Colors.blueGrey.shade600),),
+              Icon(
+                Icons.location_on,
+                color: Colors.blueGrey,
+              ),
+              Text(
+                "San Diego, California, USA",
+                style: TextStyle(color: Colors.blueGrey.shade600),
+              ),
             ],
           ),
-          Container(height: 8,),
+          Container(
+            height: 8,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               IconButton(
                 color: Colors.blueGrey,
                 icon: Icon(FontAwesomeIcons.instagram),
-                onPressed: (){},
+                onPressed: () {},
               ),
               IconButton(
                 color: Colors.blueGrey,
                 icon: Icon(FontAwesomeIcons.facebookF),
-                onPressed: (){},
+                onPressed: () {},
               ),
               IconButton(
                 color: Colors.blueGrey,
                 icon: Icon(FontAwesomeIcons.twitter),
-                onPressed: (){},
+                onPressed: () {},
               ),
             ],
           ),
@@ -199,11 +226,17 @@ class Home extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.person, color: Colors.white,),
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
                   onPressed: null,
                 ),
                 IconButton(
-                  icon: Icon(Icons.location_on, color: Colors.white,),
+                  icon: Icon(
+                    Icons.location_on,
+                    color: Colors.white,
+                  ),
                   onPressed: null,
                 ),
                 Spacer(),
