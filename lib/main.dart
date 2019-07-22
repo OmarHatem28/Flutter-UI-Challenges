@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Views/Login.dart';
+import 'Views/beach.dart';
 import 'Views/home.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Home(),
       routes: {
-        '/login': (context) => Login(),
+        '/beach': (context) => Beach(),
       },
     );
   }

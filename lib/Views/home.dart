@@ -11,9 +11,9 @@ class Home extends StatelessWidget {
       'path': '',
     },
     {
-      'text': 'Login',
+      'text': 'Beach',
       'font': '',
-      'path': '/login',
+      'path': '/beach',
     },
   ];
   Size size;
