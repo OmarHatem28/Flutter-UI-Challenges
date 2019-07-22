@@ -9,11 +9,13 @@ class Home extends StatelessWidget {
       'text': 'Find My Soul Mate',
       'font': 'Great_Vibes',
       'path': '',
+      'image': 'assets/img/heart1.jfif',
     },
     {
       'text': 'Beach',
       'font': '',
       'path': '/beach',
+      'image': 'assets/img/beach3.jpg',
     },
   ];
   Size size;
@@ -74,20 +76,27 @@ class Home extends StatelessWidget {
             itemCount: drawerTiles.length * 2,
             itemBuilder: (context, i) {
               if (i.isOdd) return Divider();
-              return ListTile(
-                title: Text(
-                  drawerTiles[i ~/ 2]['text'],
-                  style: TextStyle(
-                    fontFamily: drawerTiles[i ~/ 2]['font'].isEmpty
-                        ? null
-                        : drawerTiles[i ~/ 2]['font'],
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
+              return Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage(drawerTiles[i ~/ 2]['image']), fit: BoxFit.fill)
                 ),
-                onTap: () => drawerTiles[i ~/ 2]['path'].isEmpty
-                    ? Navigator.pop(context)
-                    : Navigator.pushNamed(context, drawerTiles[i ~/ 2]['path']),
+                child: ListTile(
+                  title: Center(
+                    child: Text(
+                      drawerTiles[i ~/ 2]['text'],
+                      style: TextStyle(
+                        fontFamily: drawerTiles[i ~/ 2]['font'].isEmpty
+                            ? null
+                            : drawerTiles[i ~/ 2]['font'],
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  onTap: () => drawerTiles[i ~/ 2]['path'].isEmpty
+                      ? Navigator.pop(context)
+                      : Navigator.pushNamed(context, drawerTiles[i ~/ 2]['path']),
+                ),
               );
             },
           ),
