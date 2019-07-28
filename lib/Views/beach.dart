@@ -33,7 +33,7 @@ class Beach extends StatelessWidget {
                     tween:
                     Tween<Offset>(begin: Offset(-0.9, 0), end: Offset(0.2, 0)),
                     duration: Duration(seconds: 4),
-                    curve: Curves.bounceOut,
+                    curve: Curves.elasticOut,
                     repeats: 1,
                     builder: (anim) =>
                         FractionalTranslation(

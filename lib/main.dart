@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'Views/beach.dart';
+import 'Views/curvyDrawer.dart';
 import 'Views/home.dart';
 
 void main() => runApp(MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       home: Home(),
       routes: {
         '/beach': (context) => Beach(),
+        '/curvyDrawer': (context) => CurvyDrawer(),
       },
     );
   }

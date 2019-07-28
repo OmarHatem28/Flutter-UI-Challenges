@@ -17,6 +17,12 @@ class Home extends StatelessWidget {
       'path': '/beach',
       'image': 'assets/img/beach3.jpg',
     },
+    {
+      'text': 'Curvy Drawer',
+      'font': '',
+      'path': '/curvyDrawer',
+      'image': 'assets/img/curvyDrawer.png',
+    },
   ];
   Size size;
 
@@ -62,11 +68,22 @@ class Home extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: UserAccountsDrawerHeader(
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage("assets/img/pp.png"),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage("assets/img/pp.png"),
+            ),
+            accountName: Text("Omar Hatem"),
+            accountEmail: Text(
+              "omarh.ismail1@gmail.com",
+            ),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: colors,
+                begin: Alignment.bottomRight,
+                end: Alignment.topLeft,
+                stops: [0.2, 1],
               ),
-              accountName: Text("Omar Hatem"),
-              accountEmail: Text("omarh.ismail1@gmail.com")),
+            ),
+          ),
           flex: 2,
         ),
         Expanded(
@@ -78,8 +95,9 @@ class Home extends StatelessWidget {
               if (i.isOdd) return Divider();
               return Container(
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(drawerTiles[i ~/ 2]['image']), fit: BoxFit.fill)
-                ),
+                    image: DecorationImage(
+                        image: AssetImage(drawerTiles[i ~/ 2]['image']),
+                        fit: BoxFit.fill)),
                 child: ListTile(
                   title: Center(
                     child: Text(
@@ -95,7 +113,8 @@ class Home extends StatelessWidget {
                   ),
                   onTap: () => drawerTiles[i ~/ 2]['path'].isEmpty
                       ? Navigator.pop(context)
-                      : Navigator.pushNamed(context, drawerTiles[i ~/ 2]['path']),
+                      : Navigator.pushNamed(
+                          context, drawerTiles[i ~/ 2]['path']),
                 ),
               );
             },
