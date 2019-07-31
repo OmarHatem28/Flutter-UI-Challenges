@@ -17,7 +17,7 @@ class Playground extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    int rand;
+    int rand, randImg;
     return Scaffold(
       body: Container(
         child: Stack(
@@ -29,6 +29,7 @@ class Playground extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, i) {
                   rand = new Random().nextInt(colors.length);
+                  randImg = new Random().nextInt(6) + 1;
                   return Row(
                     children: <Widget>[
                       Expanded(
@@ -67,7 +68,7 @@ class Playground extends StatelessWidget {
                             elevation: 10,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Image.asset('assets/img/girl4.jpg'),
+                              child: Image.asset('assets/img/girl$randImg.jpg', fit: BoxFit.fill,),
                             ),
                           ),
                           decoration: BoxDecoration(
