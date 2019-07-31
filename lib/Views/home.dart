@@ -23,6 +23,12 @@ class Home extends StatelessWidget {
       'path': '/curvyDrawer',
       'image': 'assets/img/curvyDrawer.png',
     },
+    {
+      'text': 'Playground',
+      'font': '',
+      'path': '/playground',
+      'image': 'assets/img/curvyDrawer.png',
+    },
   ];
   Size size;
 
