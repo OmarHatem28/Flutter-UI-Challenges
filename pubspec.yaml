@@ -80,3 +80,6 @@ flutter:
     - family: Great_Vibes
       fonts:
         - asset: assets/fonts/GreatVibes-Regular.ttf
+    - family: Brushed
+      fonts:
+        - asset: assets/fonts/Brushed.ttf

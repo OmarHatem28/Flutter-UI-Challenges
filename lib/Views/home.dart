@@ -1,40 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'homeDrawer.dart';
+
 class Home extends StatelessWidget {
   final List<Color> colors = [Colors.pinkAccent, Colors.orange];
   final List<Color> colors2 = [Color(0xffff7ae9), Color(0xfff2855c)];
-  final drawerTiles = [
-    {
-      'text': 'Find My Soul Mate',
-      'font': 'Great_Vibes',
-      'path': '',
-      'image': 'assets/img/heart1.jfif',
-    },
-    {
-      'text': 'Beach',
-      'font': '',
-      'path': '/beach',
-      'image': 'assets/img/beach3.jpg',
-    },
-    {
-      'text': 'Curvy Drawer',
-      'font': '',
-      'path': '/curvyDrawer',
-      'image': 'assets/img/curvyDrawer.png',
-    },
-    {
-      'text': 'Playground',
-      'font': '',
-      'path': '/playground',
-      'image': 'assets/img/curvyDrawer.png',
-    },
-  ];
-  Size size;
 
   @override
   Widget build(BuildContext context) {
-    size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -43,7 +18,7 @@ class Home extends StatelessWidget {
               height: 410,
               child: Stack(
                 children: <Widget>[
-                  buildTopGradient(),
+                  buildTopGradient(size),
                   buildTitle(),
                   buildImage(),
                   AppBar(
@@ -60,77 +35,15 @@ class Home extends StatelessWidget {
               ),
             ),
             buildInfoColumn(),
-            buildBottomRow(),
+            buildBottomRow(size),
           ],
         ),
       ),
-      drawer: buildDrawer(context),
+      drawer: HomeDrawer(),
     );
   }
 
-  Widget buildDrawer(BuildContext context) {
-    return Drawer(
-        child: Column(
-      children: <Widget>[
-        Expanded(
-          child: UserAccountsDrawerHeader(
-            currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage("assets/img/pp.png"),
-            ),
-            accountName: Text("Omar Hatem"),
-            accountEmail: Text(
-              "omarh.ismail1@gmail.com",
-            ),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: colors,
-                begin: Alignment.bottomRight,
-                end: Alignment.topLeft,
-                stops: [0.2, 1],
-              ),
-            ),
-          ),
-          flex: 2,
-        ),
-        Expanded(
-          flex: 5,
-          child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: drawerTiles.length * 2,
-            itemBuilder: (context, i) {
-              if (i.isOdd) return Divider();
-              return Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(drawerTiles[i ~/ 2]['image']),
-                        fit: BoxFit.fill)),
-                child: ListTile(
-                  title: Center(
-                    child: Text(
-                      drawerTiles[i ~/ 2]['text'],
-                      style: TextStyle(
-                        fontFamily: drawerTiles[i ~/ 2]['font'].isEmpty
-                            ? null
-                            : drawerTiles[i ~/ 2]['font'],
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
-                  onTap: () => drawerTiles[i ~/ 2]['path'].isEmpty
-                      ? Navigator.pop(context)
-                      : Navigator.pushNamed(
-                          context, drawerTiles[i ~/ 2]['path']),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    ));
-  }
-
-  Widget buildTopGradient() {
+  Widget buildTopGradient(Size size) {
     return Container(
       height: 300,
       width: size.width,
@@ -235,7 +148,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget buildBottomRow() {
+  Widget buildBottomRow(Size size) {
     return Container(
       margin: EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 30),
       height: 90,

@@ -23,7 +23,7 @@ class Playground extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.only(top: height / 3.85),
+              margin: EdgeInsets.only(top: 175),
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 10,
@@ -54,7 +54,8 @@ class Playground extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 "Why must you mortal cut throw the balance that have been so carefully preserved.",
-                                style: TextStyle(color: Colors.blueGrey, fontSize: 13),
+                                style: TextStyle(
+                                    color: Colors.blueGrey, fontSize: 13),
                               ),
                             ),
                           ],
@@ -68,7 +69,10 @@ class Playground extends StatelessWidget {
                             elevation: 10,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Image.asset('assets/img/girl$randImg.jpg', fit: BoxFit.fill,),
+                              child: Image.asset(
+                                'assets/img/girl$randImg.jpg',
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
                           decoration: BoxDecoration(
@@ -95,15 +99,14 @@ class Playground extends StatelessWidget {
 
   Widget buildAppBar(double width, double height) {
     return Container(
-      height: height / 3,
+      height: 226,
 //      color: Colors.blue,
       child: ClipPath(
           clipper: MyClipper(),
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/img/sand4.jfif'),
-                  fit: BoxFit.fill),
+                  image: AssetImage('assets/img/sand4.jfif'), fit: BoxFit.fill),
             ),
             child: Column(
               children: <Widget>[
