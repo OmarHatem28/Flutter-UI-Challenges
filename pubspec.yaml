@@ -26,6 +26,7 @@ dependencies:
   font_awesome_flutter: 8.5.0
   wave: 0.0.8
   animator: 0.1.4
+  http: 0.12.0+1
 
 dev_dependencies:
   flutter_test:
@@ -83,3 +84,7 @@ flutter:
     - family: Brushed
       fonts:
         - asset: assets/fonts/Brushed.ttf
+    - family: Arvo
+      fonts:
+        - asset: assets/fonts/Arvo-Regular.ttf
+        - asset: assets/fonts/Arvo-Bold.ttf
