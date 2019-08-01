@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'movieDetails.dart';
+
 class MovieList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new MovieListState();
@@ -89,7 +91,10 @@ class MovieListState extends State<MovieList> {
                     Expanded(flex: 3, child: buildInfo(movies, i)),
                   ],
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MovieDetails(imageUrl: imageUrl, movie: movies[i],)));
+                },
               );
             }));
   }
@@ -122,8 +127,8 @@ class MovieListState extends State<MovieList> {
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Text(
               movies[i]['title'],
-              style: TextStyle(color: mainColor, fontSize: 18, fontWeight: FontWeight.bold
-              ),
+              style: TextStyle(
+                  color: mainColor, fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           Text(
