@@ -17,7 +17,7 @@ class Beach extends StatelessWidget {
                 children: <Widget>[
                   Animator(
                     tween: Tween<Offset>(
-                        begin: Offset(-0.9, 0), end: Offset(0, 0)),
+                        begin: Offset(-0.9, 0), end: Offset(0.005, 0)),
                     duration: Duration(seconds: 2),
                     curve: Curves.bounceOut,
                     repeats: 1,
