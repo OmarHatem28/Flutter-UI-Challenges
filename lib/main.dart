@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Views/beach.dart';
 import 'Views/curvyDrawer.dart';
 import 'Views/home.dart';
+import 'Views/movieList.dart';
 import 'Views/playground.dart';
 
 void main() => runApp(MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/beach': (context) => Beach(),
         '/curvyDrawer': (context) => CurvyDrawer(),
         '/playground': (context) => Playground(),
+        '/movies': (context) => MovieList(),
       },
     );
   }
