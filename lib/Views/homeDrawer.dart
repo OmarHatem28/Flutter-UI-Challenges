@@ -31,7 +31,7 @@ class HomeDrawer extends StatelessWidget {
       'text': 'Movies',
       'font': 'Arvo',
       'path': '/movies',
-      'image': 'assets/img/curvyDrawer.png',
+      'image': 'assets/img/movies.jpg',
     },
   ];
 

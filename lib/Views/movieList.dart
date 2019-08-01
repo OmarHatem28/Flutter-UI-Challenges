@@ -69,7 +69,7 @@ class MovieListState extends State<MovieList> {
                   return Text("${snapshot.error}");
                 }
                 // By default, show a loading spinner
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator(),);
               },
             ),
           ],
@@ -92,8 +92,14 @@ class MovieListState extends State<MovieList> {
                   ],
                 ),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MovieDetails(imageUrl: imageUrl, movie: movies[i],)));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MovieDetails(
+                                imageUrl: imageUrl,
+                                movie: movies[i],
+                                mainColor: mainColor,
+                              )));
                 },
               );
             }));
