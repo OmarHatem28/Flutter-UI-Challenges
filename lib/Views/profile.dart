@@ -5,14 +5,22 @@ import 'package:ui_challenges/Models/subItem.dart';
 class Profile extends StatelessWidget {
 
   final List<Item> items = [
-    Item(name: "Collection", subItems: [
-      SubItem('Photos', 'assets/img/girl4.jpg'),
-      SubItem('Travel', 'assets/img/girl6.jpg'),
-      SubItem('Food', 'assets/img/girl3.jpg'),
-    ]),
-    Item(name: "Most Like Posts", subItems: [
+    Item(name: "All Collections", subItems: [
       SubItem('Photos', 'assets/img/girl1.jpg'),
       SubItem('Travel', 'assets/img/girl2.jpg'),
+      SubItem('Food', 'assets/img/girl3.jpg'),
+      SubItem('Photos', 'assets/img/girl4.jpg'),
+      SubItem('Travel', 'assets/img/girl5.jpg'),
+      SubItem('Food', 'assets/img/girl6.jpg'),
+    ]),
+    Item(name: "Favorites", subItems: [
+      SubItem('Photos', 'assets/img/girl4.jpg'),
+      SubItem('Travel', 'assets/img/girl1.jpg'),
+      SubItem('Food', 'assets/img/girl2.jpg'),
+    ]),
+    Item(name: "Most Like Posts", subItems: [
+      SubItem('Photos', 'assets/img/girl3.jpg'),
+      SubItem('Travel', 'assets/img/girl5.jpg'),
     ]),
   ];
 
@@ -50,120 +58,134 @@ class Profile extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(top: 120),
               height: size.height - size.height / 3,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: items.length,
-                itemBuilder: (context, i) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.only(left: 8, bottom: 16, right: 8),
-                    child: Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Text(
-                              items[i].name,
-                              style: MyTextStyle().bold,
-                            ),
-                            Spacer(),
-                            Text("View all (${items[i].subItems.length})", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),),
-                          ],
-                        ),
-                        Container(
-                          child: ListView.builder(
-//                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            itemCount: items[i].subItems.length,
-                            itemBuilder: (context, j) {
-                              return Padding(
-                                padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.asset(items[i].subItems[j].image),
-                                ),
-                              );
-                            },
-                          ),
-                          height: 150,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+              child: buildNestedListView(),
             ),
           ],
         ),
-        Positioned(
-          top: size.height / 5,
-          left: size.width / 10,
-          height: 200,
-          width: 300,
-          child: Card(
-            elevation: 10,
-            child: Container(
-              margin: EdgeInsets.only(top: 60),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      "Jennifer Aniston",
-                      style: MyTextStyle().bold,
-                    ),
-                  ),
-                  Text("Actress | Model | Dev"),
-                  Container(
-                    child: Divider(
-                      color: Colors.blueGrey,
-                    ),
-                    padding: EdgeInsets.only(left: 30, right: 30),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      buildTextColumn(title: "228", sub: "Posts"),
-                      buildTextColumn(title: "10.6K", sub: "Followers"),
-                      buildTextColumn(title: "28", sub: "Following"),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          top: size.height / 8,
-          left: size.width / 2.7,
-          height: 100,
-          width: 100,
-          child: Container(
-            decoration: ShapeDecoration(
-                shape: CircleBorder(),
-                image: DecorationImage(
-                    image: AssetImage('assets/img/girl5.jpg'),
-                    fit: BoxFit.cover)),
-          ),
-        )
+        buildInfoCard(size),
+        buildImage(size),
       ],
     );
   }
 
-  Widget buildTextColumn({String title, String sub}) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 8, bottom: 8),
-          child: Text(
-            title,
-            style: MyTextStyle().bold,
+  Widget buildNestedListView() {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: items.length,
+      itemBuilder: (context, i) {
+        return Padding(
+          padding:
+          const EdgeInsets.only(left: 8, bottom: 16, right: 8),
+          child: Column(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Text(
+                    items[i].name,
+                    style: MyTextStyle().bold,
+                  ),
+                  Spacer(),
+                  Text("View all (${items[i].subItems.length})", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),),
+                ],
+              ),
+              Container(
+                child: ListView.builder(
+//                            shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: items[i].subItems.length,
+                  itemBuilder: (context, j) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.asset(items[i].subItems[j].image),
+                      ),
+                    );
+                  },
+                ),
+                height: 150,
+              ),
+            ],
           ),
-        ),
-        Text(
-          sub,
-          style: MyTextStyle().sub,
-        ),
-      ],
+        );
+      },
+    );
+  }
+
+  Widget buildInfoCard(Size size) {
+     return Positioned(
+       top: size.height / 5,
+       left: size.width / 10,
+       height: 200,
+       width: 300,
+       child: Card(
+         elevation: 10,
+         child: Container(
+           margin: EdgeInsets.only(top: 60),
+           child: Column(
+             children: <Widget>[
+               Padding(
+                 padding: const EdgeInsets.only(bottom: 5),
+                 child: Text(
+                   "Jennifer Aniston",
+                   style: MyTextStyle().bold,
+                 ),
+               ),
+               Text("Actress | Model | Dev"),
+               Container(
+                 child: Divider(
+                   color: Colors.blueGrey,
+                 ),
+                 padding: EdgeInsets.only(left: 30, right: 30),
+               ),
+               Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                 children: <Widget>[
+                   buildTextColumn(title: "228", sub: "Posts"),
+                   buildTextColumn(title: "10.6K", sub: "Followers"),
+                   buildTextColumn(title: "28", sub: "Following"),
+                 ],
+               ),
+             ],
+           ),
+         ),
+       ),
+     );
+  }
+
+  Widget buildImage(Size size) {
+    return Positioned(
+      top: size.height / 8,
+      left: size.width / 2.7,
+      height: 100,
+      width: 100,
+      child: Container(
+        decoration: ShapeDecoration(
+            shape: CircleBorder(),
+            image: DecorationImage(
+                image: AssetImage('assets/img/girl5.jpg'),
+                fit: BoxFit.cover)),
+      ),
+    );
+  }
+
+  Widget buildTextColumn({String title, String sub}) {
+    return Expanded(
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 8, bottom: 8),
+            child: Text(
+              title,
+              style: MyTextStyle().bold,
+            ),
+          ),
+          Text(
+            sub,
+            style: MyTextStyle().sub,
+          ),
+        ],
+      ),
     );
   }
 }
