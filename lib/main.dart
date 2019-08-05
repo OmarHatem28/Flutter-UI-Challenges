@@ -5,6 +5,7 @@ import 'Views/curvyDrawer.dart';
 import 'Views/home.dart';
 import 'Views/movieList.dart';
 import 'Views/playground.dart';
+import 'Views/profile.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/curvyDrawer': (context) => CurvyDrawer(),
         '/playground': (context) => Playground(),
         '/movies': (context) => MovieList(),
+        '/profile': (context) => Profile(),
       },
     );
   }

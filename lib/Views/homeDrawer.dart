@@ -33,6 +33,12 @@ class HomeDrawer extends StatelessWidget {
       'path': '/movies',
       'image': 'assets/img/movies.jpg',
     },
+    {
+      'text': 'Profile',
+      'font': 'Arvo',
+      'path': '/profile',
+      'image': 'assets/img/movies.jpg',
+    },
   ];
 
   @override
