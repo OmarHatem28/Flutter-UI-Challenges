@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:ui_challenges/Models/item.dart';
+import 'package:ui_challenges/Models/subItem.dart';
 
 class Profile extends StatelessWidget {
+
+  final List<Item> items = [
+    Item(name: "Collection", subItems: [
+      SubItem('Photos', 'assets/img/girl4.jpg'),
+      SubItem('Travel', 'assets/img/girl6.jpg'),
+      SubItem('Food', 'assets/img/girl3.jpg'),
+    ]),
+    Item(name: "Most Like Posts", subItems: [
+      SubItem('Photos', 'assets/img/girl1.jpg'),
+      SubItem('Travel', 'assets/img/girl2.jpg'),
+    ]),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          buildInfoCard(size),
-        ],
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: buildBody(size),
       ),
     );
   }
 
-  Widget buildInfoCard(Size size) {
+  Widget buildBody(Size size) {
     return Stack(
       children: <Widget>[
         Column(
@@ -34,39 +48,48 @@ class Profile extends StatelessWidget {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 100),
+              padding: EdgeInsets.only(top: 120),
               height: size.height - size.height / 3,
-              child: ListView(
+              child: ListView.builder(
                 shrinkWrap: true,
-                children: <Widget>[
-                  ListTile(
-                    title: Text("HI"),
-                  ),
-                  ListTile(
-                    title: Text("HI"),
-                  ),
-                  ListTile(
-                    title: Text("HI"),
-                  ),
-                  ListTile(
-                    title: Text("HI"),
-                  ),
-                  ListTile(
-                    title: Text("HI"),
-                  ),
-                  ListTile(
-                    title: Text("HI"),
-                  ),ListTile(
-                    title: Text("HI"),
-                  ),ListTile(
-                    title: Text("HI"),
-                  ),ListTile(
-                    title: Text("HI"),
-                  ),
-                  ListTile(
-                    title: Text("HI"),
-                  ),
-                ],
+                itemCount: items.length,
+                itemBuilder: (context, i) {
+                  return Padding(
+                    padding:
+                        const EdgeInsets.only(left: 8, bottom: 16, right: 8),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              items[i].name,
+                              style: MyTextStyle().bold,
+                            ),
+                            Spacer(),
+                            Text("View all (${items[i].subItems.length})", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),),
+                          ],
+                        ),
+                        Container(
+                          child: ListView.builder(
+//                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: items[i].subItems.length,
+                            itemBuilder: (context, j) {
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.asset(items[i].subItems[j].image),
+                                ),
+                              );
+                            },
+                          ),
+                          height: 150,
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           ],
