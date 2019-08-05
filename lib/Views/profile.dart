@@ -6,19 +6,20 @@ class Profile extends StatelessWidget {
 
   final List<Item> items = [
     Item(name: "All Collections", subItems: [
-      SubItem('Photos', 'assets/img/girl1.jpg'),
-      SubItem('Travel', 'assets/img/girl2.jpg'),
-      SubItem('Food', 'assets/img/girl3.jpg'),
+      SubItem('Photos', 'assets/img/girl3.jpg'),
+      SubItem('Travel', 'assets/img/girl6.jpg'),
+      SubItem('Food', 'assets/img/girl2.jpg'),
       SubItem('Photos', 'assets/img/girl4.jpg'),
       SubItem('Travel', 'assets/img/girl5.jpg'),
-      SubItem('Food', 'assets/img/girl6.jpg'),
+      SubItem('Food', 'assets/img/girl1.jpg'),
     ]),
     Item(name: "Favorites", subItems: [
       SubItem('Photos', 'assets/img/girl4.jpg'),
       SubItem('Travel', 'assets/img/girl1.jpg'),
+      SubItem('Travel', 'assets/img/girl5.jpg'),
       SubItem('Food', 'assets/img/girl2.jpg'),
     ]),
-    Item(name: "Most Like Posts", subItems: [
+    Item(name: "Most Liked Posts", subItems: [
       SubItem('Photos', 'assets/img/girl3.jpg'),
       SubItem('Travel', 'assets/img/girl5.jpg'),
     ]),
@@ -73,12 +74,11 @@ class Profile extends StatelessWidget {
       shrinkWrap: true,
       itemCount: items.length,
       itemBuilder: (context, i) {
-        return Padding(
-          padding:
-          const EdgeInsets.only(left: 8, bottom: 16, right: 8),
-          child: Column(
-            children: <Widget>[
-              Row(
+        return Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: Row(
                 children: <Widget>[
                   Text(
                     items[i].name,
@@ -88,25 +88,26 @@ class Profile extends StatelessWidget {
                   Text("View all (${items[i].subItems.length})", style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),),
                 ],
               ),
-              Container(
-                child: ListView.builder(
-//                            shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: items[i].subItems.length,
-                  itemBuilder: (context, j) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 8, top: 8, right: 8),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image.asset(items[i].subItems[j].image),
-                      ),
-                    );
-                  },
-                ),
-                height: 150,
+            ),
+            Container(
+              padding: EdgeInsets.only(bottom: 8, top: 8),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
+                itemCount: items[i].subItems.length,
+                itemBuilder: (context, j) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 8,right: 8),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.asset(items[i].subItems[j].image),
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+              height: 150,
+            ),
+          ],
         );
       },
     );

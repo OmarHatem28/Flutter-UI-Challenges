@@ -37,7 +37,7 @@ class HomeDrawer extends StatelessWidget {
       'text': 'Profile',
       'font': 'Arvo',
       'path': '/profile',
-      'image': 'assets/img/movies.jpg',
+      'image': 'assets/img/profile.png',
     },
   ];
 
