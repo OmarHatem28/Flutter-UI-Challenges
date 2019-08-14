@@ -9,3 +9,8 @@ Practicing flutter UI by Creating and Replicating various flutter UI challenges.
 ## Animations
 
 <img src="screenshots/Beach.jpg" height="720px" >
+
+
+## License
+
+MIT Licensed. Copyright (c) 2019 Omar Hatem
